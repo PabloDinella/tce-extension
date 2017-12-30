@@ -18,7 +18,7 @@ http.createServer(function(req, res) {
     res.write(fs.readFileSync(__dirname + '/sse-node.html'));
     res.end();
   }
-}).listen(8000);
+}).listen(process.env.PORT || 8000);
 
 function sendSSE(req, res) {
   res.writeHead(200, {
