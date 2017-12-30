@@ -1,6 +1,6 @@
 {
-  "name": "A browser action with a popup that changes the page color",
-  "description": "Change the current page color",
+  "name": "Notifier for True Combat: Elite",
+  "description": "Be informed of how many players are currently online on www.gotce.tk servers",
   "version": "1.0",
   "background": {
     "scripts": ["background.js"]
@@ -12,7 +12,7 @@
     "https://*/*"
   ],
   "browser_action": {
-      "default_title": "Set this page's color.",
+      "default_title": "See players in OBJ and BC servers",
       "default_icon": "icon.png",
       "default_popup": "popup.html"
   },
