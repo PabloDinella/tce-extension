@@ -1,5 +1,30 @@
 var http = require('http');
 var fs = require('fs');
+const Gamedig = require('gamedig')
+
+let objInfo = {}
+let bcInfo = {}
+
+setInterval(function() {
+  Gamedig.query({
+    type: 'wolfensteinet',
+    host: '216.117.143.153',
+    port: '27961',
+  }).then((state) => {
+    objInfo = state
+  }).catch((error) => {
+    objInfo = null
+  }); 
+  Gamedig.query({
+    type: 'wolfensteinet',
+    host: '216.117.143.153',
+    port: '27960',
+  }).then((state) => {
+    bcInfo = state
+  }).catch((error) => {
+    bcInfo = null
+  }); 
+}, 5000)
 
 http.createServer(function(req, res) {
   debugHeaders(req);
@@ -31,12 +56,15 @@ function sendSSE(req, res) {
 
   var id = (new Date()).toLocaleTimeString();
 
+  let obj = JSON.stringify({objInfo, bcInfo})
+
   // Sends a SSE every 5 seconds on a single connection.
   setInterval(function() {
-    constructSSE(res, id, (new Date()).toLocaleTimeString());
+    obj = JSON.stringify({objInfo, bcInfo})
+    constructSSE(res, id, obj);
   }, 5000);
 
-  constructSSE(res, id, (new Date()).toLocaleTimeString());
+  constructSSE(res, id, obj);
 }
 
 function constructSSE(res, id, data) {
