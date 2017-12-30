@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "gamedig": "^1.0.37"
+  },
+  "scripts": {
+    "start": "node src/index.js"
   }
 }
