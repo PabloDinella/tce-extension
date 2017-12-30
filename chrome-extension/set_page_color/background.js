@@ -1,15 +1,18 @@
-var source = new window.EventSource('http://localhost:8000/events');
+const url = 'http://tce-extension.herokuapp.com'
+// const url = 'http://localhost:8000'
+
+var source = new window.EventSource(url + '/events');
 
 source.addEventListener('message', function(e) {
-  if (e.origin != 'http://localhost:8000') {
-    alert('Origin was not http://localhost:8000');
+  if (e.origin != url) {
+    console.log('Origin was not' + url);
     return;
   }
 
-  console.log('lastEventID: ' + (e.lastEventId || '--') +
-             ', server time: ' + e.data, 'msg');
-  chrome.browserAction.setBadgeText({text:String(e.data)});
-  chrome.storage.sync.set({ "yourBody": e.data })
+  const obj = JSON.parse(e.data)
+
+  chrome.browserAction.setBadgeText({text:String(obj.objInfo.players.length + obj.bcInfo.players.length)});
+  chrome.storage.sync.set({ "yourBody": obj })
 }, false);
 
 source.addEventListener('open', function(e) {

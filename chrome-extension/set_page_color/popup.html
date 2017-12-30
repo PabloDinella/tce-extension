@@ -14,17 +14,25 @@
       div > * {
         margin: 5px 0;
       }
+
+      h3 small {
+        font-weight: normal;
+      }
+
+      h3 small span {
+        color: red;
+      }
     </style>
   </head>
   <body>
     <div>
-      <h3>OBJ www.gotce.tk: <small><span>-</span> players online</small></h2>
-      <h3>BC www.gotce.tk: <small><span>-</span> players online</small></h2>
+      <h3>OBJ www.gotce.tk: <small><span id="objPlayers">-</span> players online</small></h2>
+      <h3>BC www.gotce.tk: <small><span id="bcPlayers">-</span> players online</small></h2>
       <input type="text" value="/connect 216.117.143.153:27961" />
       <input type="text" value="/connect 216.117.143.153:27960" />
+      <a href="http://et.splatterladder.com/?mod=serverlist&gamemod=tcetest&phrase=gotce" target="_blank">more info</a>
     </div>
     
-    <div id="box">asdfasdfadsf</div>
     <script src="popup.js"></script>
   </body>
 </html>

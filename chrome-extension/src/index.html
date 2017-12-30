@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <pre></pre>
+
+    <script>
+        const url = 'http://localhost:8000'
+        const source = new EventSource(url + '/events')
+
+        source.addEventListener('message', function(e) {
+            if (e.origin != url) {
+                console.log('Origin was not' + url);
+                return;
+            }
+            console.log(JSON.parse(e.data));
+        }, false);
+
+        source.addEventListener('open', function(e) {
+            console.log('abriu')
+        }, false);
+
+        source.addEventListener('error', function(e) {
+            if (e.eventPhase == 2) { //EventSource.CLOSED
+                console.log('fechou')
+            }
+        }, false);
+    </script>
+</body>
+</html>
