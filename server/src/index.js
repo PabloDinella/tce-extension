@@ -15,7 +15,7 @@ http.createServer(function(req, res) {
     }
   } else {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(fs.readFileSync(__dirname + '/sse-node.html'));
+    res.write(fs.readFileSync(__dirname + '/index.html'));
     res.end();
   }
 }).listen(process.env.PORT || 8000);
