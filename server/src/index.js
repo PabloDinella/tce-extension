@@ -1,5 +1,5 @@
-var http = require('http');
-var fs = require('fs');
+let http = require('http');
+let fs = require('fs');
 const Gamedig = require('gamedig')
 
 let objInfo = {}
@@ -54,7 +54,7 @@ function sendSSE(req, res) {
     'Access-Control-Expose-Headers': '*',
   });
 
-  var id = (new Date()).toLocaleTimeString();
+  let id = (new Date()).toLocaleTimeString();
 
   let obj = JSON.stringify({objInfo, bcInfo})
 
@@ -75,7 +75,7 @@ function constructSSE(res, id, data) {
 function debugHeaders(req) {
   console.log('URL: ' + req.url);
   console.log('Check', req.url == '/events')
-  for (var key in req.headers) {
+  for (let key in req.headers) {
     console.log(key + ': ' + req.headers[key]);
   }
   console.log('\n\n');
